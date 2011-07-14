@@ -1,0 +1,19 @@
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+mainClassName = 'org.groovycasts.graffiti.Demo'
+
+repositories {
+	mavenCentral()
+	flatDir(dirs: file('lib'))
+}
+
+dependencies {
+	groovy 'org.codehaus.groovy:groovy-all:1.8.0'
+
+	compile 'com.goodercode:graffiti:1.0-SNAPSHOT'
+
+	compile 'org.mortbay.jetty:jetty:6.1.25'
+	compile 'org.mortbay.jetty:jetty-plus:6.1.25'
+	compile 'org.mortbay.jetty:jetty-naming:6.1.25'
+}
