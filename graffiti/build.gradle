@@ -17,3 +17,7 @@ dependencies {
 	compile 'org.mortbay.jetty:jetty-plus:6.1.25'
 	compile 'org.mortbay.jetty:jetty-naming:6.1.25'
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.0-milestone-3'
+}
