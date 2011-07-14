@@ -5,7 +5,7 @@ import graffiti.Get
 
 @Get('/greet')
 def greet() {
-	"Hello!"
+	params.name ? "Hey there, $params.name!" : "Hello!"
 }
 
 Graffiti.serve this
