@@ -16,7 +16,7 @@ def people() {
 	def json = new JsonBuilder()
 	
 	json {
-		people(everyone)
+		people( everyone.collect { name -> [person:[name:name]] } )
 	}
 	
 	json.toString()
