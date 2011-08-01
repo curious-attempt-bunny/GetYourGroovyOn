@@ -21,7 +21,7 @@ PlanarImage grayScale(PlanarImage image) {
 PlanarImage edgeDetect(PlanarImage image) {
      float[] data_h = [ 1.0F,   0.0F,   -1.0F,
                         1.414F, 0.0F,   -1.414F,
-                        1.0F,   0.0F,   -1.0F ] as float[];
+                        1.0F,   0.0F,   -1.0F ] as float[]
      float[] data_v = [-1.0F,  -1.414F, -1.0F,
                         0.0F,   0.0F,    0.0F,
                         1.0F,   1.414F,  1.0F] as float[]

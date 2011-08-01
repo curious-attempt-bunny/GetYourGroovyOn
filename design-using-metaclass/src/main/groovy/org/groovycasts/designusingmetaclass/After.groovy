@@ -18,10 +18,10 @@ PlanarImage grayScale(PlanarImage image) {
     return JAI.create("bandcombine", pb, null)
 }
 
-PlanarImage edgeDetect(PlanarImage image) {
+PlanarImage.metaClass.getEdgeDetect = { ->
      float[] data_h = [ 1.0F,   0.0F,   -1.0F,
                         1.414F, 0.0F,   -1.414F,
-                        1.0F,   0.0F,   -1.0F ] as float[];
+                        1.0F,   0.0F,   -1.0F ] as float[]
      float[] data_v = [-1.0F,  -1.414F, -1.0F,
                         0.0F,   0.0F,    0.0F,
                         1.0F,   1.414F,  1.0F] as float[]
@@ -29,7 +29,7 @@ PlanarImage edgeDetect(PlanarImage image) {
      KernelJAI kern_h = new KernelJAI(3,3,data_h)
      KernelJAI kern_v = new KernelJAI(3,3,data_v)
 
-     return JAI.create("gradientmagnitude", image,
+     return JAI.create("gradientmagnitude", delegate,
                                       kern_h, kern_v)
 }
 
@@ -43,11 +43,11 @@ void save(PlanarImage image, String filename) {
 
 PlanarImage image1 = load("image1.jpg")
 PlanarImage gray1 = grayScale(image1)
-PlanarImage edge1 = edgeDetect(gray1)
+PlanarImage edge1 = gray1.edgeDetect
 
 PlanarImage image2 = load("image2.jpg")
 PlanarImage gray2 = grayScale(image2)
-PlanarImage edge2 = edgeDetect(gray2)
+PlanarImage edge2 = gray2.edgeDetect
 
 PlanarImage output = edge1 - edge2
 
