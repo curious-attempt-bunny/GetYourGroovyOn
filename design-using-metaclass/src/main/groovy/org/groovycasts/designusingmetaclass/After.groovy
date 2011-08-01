@@ -6,7 +6,7 @@ import java.awt.image.renderable.ParameterBlock
 import javax.media.jai.KernelJAI
 import javax.media.jai.operator.SubtractDescriptor
 
-PlanarImage load(String filename) {
+PlanarImage.metaClass.static.load << { String filename ->
     return JAI.create("fileload", filename)
 }
 
@@ -41,11 +41,11 @@ void save(PlanarImage image, String filename) {
     JAI.create("filestore", image, filename)
 }
 
-PlanarImage image1 = load("image1.jpg")
+PlanarImage image1 = PlanarImage.load("image1.jpg")
 PlanarImage gray1 = image1.grayScale
 PlanarImage edge1 = gray1.edgeDetect
 
-PlanarImage image2 = load("image2.jpg")
+PlanarImage image2 = PlanarImage.load("image2.jpg")
 PlanarImage gray2 = image2.grayScale
 PlanarImage edge2 = gray2.edgeDetect
 
