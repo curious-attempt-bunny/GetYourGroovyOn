@@ -41,14 +41,14 @@ PlanarImage.metaClass.save = { String filename ->
     JAI.create("filestore", delegate, filename)
 }
 
-PlanarImage image1 = PlanarImage.load("image1.jpg")
-PlanarImage gray1 = image1.grayScale
-PlanarImage edge1 = gray1.edgeDetect
+PlanarImage image1 = PlanarImage.load("image1.jpg").grayScale.edgeDetect
 
-PlanarImage image2 = PlanarImage.load("image2.jpg")
-PlanarImage gray2 = image2.grayScale
-PlanarImage edge2 = gray2.edgeDetect
 
-PlanarImage output = edge1 - edge2
+
+PlanarImage image2 = PlanarImage.load("image2.jpg").grayScale.edgeDetect
+
+
+
+PlanarImage output = image1 - image2
 
 output.save("output.png")
