@@ -37,8 +37,8 @@ PlanarImage.metaClass.minus = { PlanarImage rhs ->
     return SubtractDescriptor.create(delegate, rhs, null)
 }
 
-void save(PlanarImage image, String filename) {
-    JAI.create("filestore", image, filename)
+PlanarImage.metaClass.save = { String filename ->
+    JAI.create("filestore", delegate, filename)
 }
 
 PlanarImage image1 = PlanarImage.load("image1.jpg")
@@ -51,4 +51,4 @@ PlanarImage edge2 = gray2.edgeDetect
 
 PlanarImage output = edge1 - edge2
 
-save(output, "output.png")
+output.save("output.png")
