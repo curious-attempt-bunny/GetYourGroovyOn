@@ -33,8 +33,8 @@ PlanarImage edgeDetect(PlanarImage image) {
                                       kern_h, kern_v)
 }
 
-PlanarImage subtract(PlanarImage image1, PlanarImage image2) {
-    return SubtractDescriptor.create(image1, image2, null)
+PlanarImage.metaClass.minus = { PlanarImage rhs ->
+    return SubtractDescriptor.create(delegate, rhs, null)
 }
 
 void save(PlanarImage image, String filename) {
@@ -49,6 +49,6 @@ PlanarImage image2 = load("image2.jpg")
 PlanarImage gray2 = grayScale(image2)
 PlanarImage edge2 = edgeDetect(gray2)
 
-PlanarImage output = subtract(edge1, edge2)
+PlanarImage output = edge1 - edge2
 
 save(output, "output.png")
