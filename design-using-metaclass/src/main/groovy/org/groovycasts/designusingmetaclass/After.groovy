@@ -10,9 +10,9 @@ PlanarImage load(String filename) {
     return JAI.create("fileload", filename)
 }
 
-PlanarImage grayScale(PlanarImage image) {
+PlanarImage.metaClass.getGrayScale = { ->
     ParameterBlock pb = new ParameterBlock()
-    pb.addSource(image)
+    pb.addSource(delegate)
     pb.add([[ 0.114D, 0.587D, 0.299D, 0.0D ]] as double[][])
 
     return JAI.create("bandcombine", pb, null)
@@ -42,11 +42,11 @@ void save(PlanarImage image, String filename) {
 }
 
 PlanarImage image1 = load("image1.jpg")
-PlanarImage gray1 = grayScale(image1)
+PlanarImage gray1 = image1.grayScale
 PlanarImage edge1 = gray1.edgeDetect
 
 PlanarImage image2 = load("image2.jpg")
-PlanarImage gray2 = grayScale(image2)
+PlanarImage gray2 = image2.grayScale
 PlanarImage edge2 = gray2.edgeDetect
 
 PlanarImage output = edge1 - edge2
